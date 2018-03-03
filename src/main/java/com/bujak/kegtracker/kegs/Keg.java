@@ -24,6 +24,10 @@ public class Keg {
         assignCards(cards);
       }
 
+    public Integer getKegId() {
+        return id.intValue();
+    }
+
     public List<Card> getCards() {
         return Arrays.asList(card1, card2, card3, card4, card5);
     }
