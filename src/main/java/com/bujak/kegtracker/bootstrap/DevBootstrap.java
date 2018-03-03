@@ -30,13 +30,11 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
     private void initData() {
 
-        Keg keg1 = this.kegFactory.getKeg(Card.WHITE, Card.BLUE, Card.WHITE, Card.WHITE, Card.SILVER);
-        Keg keg2 = this.kegFactory.getKeg(Card.WHITE, Card.BLUE, Card.SILVER, Card.WHITE, Card.BLUE);
-        Keg keg3 = this.kegFactory.getKeg(Card.WHITE, Card.WHITE, Card.WHITE, Card.WHITE, Card.GOLD);
-        kegRepository.save(keg1);
-        kegRepository.save(keg2);
-        kegRepository.save(keg3);
-
+        for (int i = 0; i < 9; i++) {
+            kegRepository.save(this.kegFactory.getKeg(Card.WHITE, Card.WHITE, Card.WHITE, Card.WHITE, Card.BLUE));
+        }
+        kegRepository.save(this.kegFactory.getKeg(Card.WHITE, Card.WHITE, Card.WHITE, Card.WHITE, Card.SILVER));
+        kegRepository.save(this.kegFactory.getKeg(Card.WHITE, Card.WHITE, Card.WHITE, Card.WHITE, Card.GOLD));
         kegRepository.findAll().forEach(keg -> logger.info(keg.toString()));
 
     }
