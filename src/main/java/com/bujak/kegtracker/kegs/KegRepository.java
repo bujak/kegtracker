@@ -10,4 +10,5 @@ public interface KegRepository extends PagingAndSortingRepository<Keg, Long> {
 
     List<Keg> findAll();
 
+    List<Keg> findAllByCardsContains(Card card);
 }
