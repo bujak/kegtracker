@@ -1,5 +1,7 @@
 package com.bujak.kegtracker.kegs;
 
+import com.bujak.kegtracker.players.Player;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,11 +16,19 @@ public class Keg {
     @Enumerated(EnumType. STRING)
     private List<Card> cards;
 
+    @ManyToOne
+    private Player owner;
+
     public Keg() {
     }
 
     public Keg(List<Card> cards) {
         this.cards = cards;
+    }
+
+    public Keg(Player owner, List<Card> cards) {
+        this.cards = cards;
+        this.owner = owner;
     }
 
     public Integer getKegId() {
@@ -31,6 +41,22 @@ public class Keg {
 
     public void setCards(List<Card> cards) {
         this.cards = cards;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Player getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
     }
 
     @Override
@@ -56,6 +82,7 @@ public class Keg {
         return "Keg{" +
                 "id=" + id +
                 ", cards=" + cards +
+                ", owner=" + owner +
                 '}';
     }
 }
